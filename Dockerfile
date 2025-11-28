@@ -52,7 +52,11 @@ RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | b
 RUN curl -sSL https://install.python-poetry.org | python3 -
 
 # 7. 의존성 파일 복사
+# poetry.lock 파일은 pyproject.toml이 있는 폴더를 연 vscode에서 devcontainer를 실행시키지 않은 local 환경 터미널(Ctrl+`)에서 poetry lock 명령어를 수행하여 만들어냄
 COPY --chown=appuser:appuser pyproject.toml poetry.lock* ./
+# *는 와일드카드 명령어로 있으면 하고 없으면 말고라는 의미
+# ./는 앞의 파일이 복사될 경로를 의미. 여기서는 /app이 된다.
+# /app은 local project 최상위 폴더와 미러링 된다.
 
 # 8. 의존성 설치 (GPU 가속의 핵심!)
 # 주의: llama-cpp-python은 빌드 시점에 환경변수가 필요하므로 별도로 빼서 설치하는 것이 안전합니다.
