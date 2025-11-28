@@ -65,4 +65,4 @@ COPY --chown=appuser:appuser . .
 # 10. 실행 명령어 : 컨테이너 실행 시(docker run) 자동으로 실행되는 명령어 모음
 # poetry run은 컨테이너 내에서 가상환경을 실행하며, poetry를 통해 설치된 라이브러리들을 사용할 수 있게 해주기 때문에, 무조건 실행되어야 함
 # 그 후에 추가적인 main.py 등이 수행되도록 설정하여야 함
-CMD ["poetry", "run"]
+CMD ["poetry", "run", "python", "main.py"]
