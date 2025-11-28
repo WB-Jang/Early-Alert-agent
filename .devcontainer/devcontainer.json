@@ -1,0 +1,48 @@
+{
+  "name": "Financial Early Alert Agent",
+  "build": {
+    "context": "..",
+    "dockerfile": "../Dockerfile"
+  },
+  // devcontainer의 json은 //가 들어가면, 주석으로 자동 인식
+  // 1. 작업 경로를 Dockerfile의 WORKDIR(/app)과 일치시킵니다.
+  "workspaceFolder": "/app",
+  
+  // 2. 실행 시 GPU 할당 및 호스트 네트워크 연결 허용
+  "runArgs": [
+    "--gpus", "all",
+    "--add-host=host.docker.internal:host-gateway",
+    "--name", "early_alert_agent_dev"
+  ],
+
+  // 3. VSCode 확장 및 설정 자동화
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-toolsai.jupyter",
+        "ms-azuretools.vscode-docker",
+        "njpwerner.autodocstring" // (선택) 독스트링 자동생성 추천
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        // Poetry가 만든 가상환경을 기본 인터프리터로 고정
+        "python.defaultInterpreterPath": "/app/.venv/bin/python",
+        // Pylance가 가상환경을 잘 찾도록 경로 힌트 제공
+        "python.analysis.extraPaths": ["/app/.venv/lib/python3.11/site-packages"]
+      }
+    }
+  },
+
+  // 4. [중요] Dockerfile에서 만든 'appuser'로 로그인하여 권한 문제 방지
+  "remoteUser": "appuser",
+
+  // 5. 컨테이너 생성 후 Poetry 의존성 자동 설치 (Dockerfile에서 했지만 안전장치)
+  // Dockerfile의 CMD가 실행되기 전에 개발 환경 세팅을 마무리합니다.
+  "postCreateCommand": "poetry install --no-root",
+
+  // 6.VSCode야, 위 Dockerfile의 CMD는 무시하고 그냥 켜두기만 해.
+  // (개발 중에는 내가 터미널에서 수동으로 실행할게)
+  "overrideCommand": true
+}
