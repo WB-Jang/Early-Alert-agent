@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "early-alert-agent"
+version = "0.1.0"
+description = "Financial Early Alert System using LLM for risk monitoring"
+authors = ["WB-Jang"]
+readme = "README.md"
+packages = [{include = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+langchain = "^0.3.0"
+langchain-community = "^0.3.0"
+langchain-core = "^0.3.0"
+langgraph = "^0.2.0"
+newsapi-python = "^0.2.7"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

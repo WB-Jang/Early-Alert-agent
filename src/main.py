@@ -12,7 +12,7 @@ from langgraph.graph import StateGraph, END
 # ==========================================
 # .env에서 로드하거나 직접 입력
 NEWS_API_KEY = os.getenv("NEWS_API_KEY", "YOUR_KEY_HERE")
-MODEL_PATH = "/workspace/data/models/qwen2.5-7b-instruct-q4_k_m.gguf"
+MODEL_PATH = os.getenv("MODEL_PATH", "./models/qwen2.5-7b-instruct-q4_k_m.gguf")
 
 # 모델 로드 (전역 인스턴스)
 # n_gpu_layers=-1 : 모든 레이어를 GPU에 할당 (RTX 4060 필수)
