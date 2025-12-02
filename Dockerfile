@@ -3,14 +3,14 @@
 FROM nvidia/cuda:12.1.0-devel-ubuntu22.04
 
 # 2. 환경 변수 설정
-ENV NVM_DIR="/home/appuser/.nvm" \
-    # Poetry가 시스템 경로가 아닌 사용자 경로에 설치되도록 설정
+ENV NVM_DIR="/home/appuser/.nvm" \    
     POETRY_HOME="/home/appuser/.local" \
     PATH="/home/appuser/.local/bin:/home/appuser/.nvm/versions/node/v20.16.0/bin:$PATH" \
     PYTHONUNBUFFERED=1 \
-    # 컨테이너 내이므로 가상환경 만들지 않음 (단, 사용자 권한 문제로 pip user install 활용 고려)
     POETRY_VIRTUALENVS_CREATE=true \
     POETRY_VIRTUALENVS_IN_PROJECT=true
+    # Poetry가 시스템 경로가 아닌 사용자 경로에 설치되도록 설정
+    # 컨테이너 내이므로 가상환경 만들지 않음 (단, 사용자 권한 문제로 pip user install 활용 고려)
 
 # 3. 시스템 패키지 설치 (Root)
 # root는 집주인, appuser는 세입자
