@@ -10,8 +10,8 @@ from newsapi import NewsApiClient # 뉴스 수집용 (가입 필요, 없으면 M
 # ==========================================
 # 1. 설정 (Configuration)
 # ==========================================
-MODEL_PATH = "./models/qwen2.5-7b-instruct-q4_k_m.gguf"
-NEWS_API_KEY = "YOUR_NEWS_API_KEY" # https://newsapi.org/ 에서 무료 키 발급 가능
+MODEL_PATH = os.getenv("MODEL_PATH", "./models/qwen2.5-7b-instruct-q4_k_m.gguf")
+NEWS_API_KEY = os.getenv("NEWS_API_KEY", "YOUR_NEWS_API_KEY") # https://newsapi.org/ 에서 무료 키 발급 가능
 
 # 하드웨어 설정 (RTX 4060 8GB 최적화)
 n_gpu_layers = -1  # 모든 레이어를 GPU에 할당

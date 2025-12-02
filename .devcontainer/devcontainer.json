@@ -30,7 +30,7 @@
         // Poetry가 만든 가상환경을 기본 인터프리터로 고정
         "python.defaultInterpreterPath": "/app/.venv/bin/python",
         // Pylance가 가상환경을 잘 찾도록 경로 힌트 제공
-        "python.analysis.extraPaths": ["/app/.venv/lib/python3.11/site-packages"]
+        "python.analysis.extraPaths": ["/app/.venv/lib/python3.11/site-packages", "/app/src"]
       }
     }
   },
